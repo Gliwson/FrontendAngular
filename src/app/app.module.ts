@@ -6,11 +6,13 @@ import { MapaComponent } from './mapa/mapa.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LocationService } from './mapa/location/location.service';
 import { PositionsService } from './mapa/position/positions.service';
+import { LayerGroupService } from './mapa/buttons/layer-group.service';
+import { ButtonService } from './mapa/buttons/button.service';
 
 @NgModule({
   declarations: [AppComponent, MapaComponent],
   imports: [BrowserModule, HttpClientModule],
-  providers: [LocationService, PositionsService],
+  providers: [LocationService, PositionsService, LayerGroupService, ButtonService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

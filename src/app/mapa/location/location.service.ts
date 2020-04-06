@@ -101,16 +101,16 @@ export class LocationService {
     map.on('locationfound', onLocationFound);
     map.on('locationerror', onLocationError);
 
-    let current_position: any;
-    let current_accuracy: any;
+    let currentPosition: any;
+    let currentAccuracy: any;
 
     function onLocationError(e) {
       alert(e.message);
     }
     function onLocationFound(e): void {
-      if (current_position) {
-        map.removeLayer(current_position);
-        map.removeLayer(current_accuracy);
+      if (currentPosition) {
+        map.removeLayer(currentPosition);
+        map.removeLayer(currentAccuracy);
       }
       const markerHtmlStyles = `
       background-color: #5E97F6;
@@ -129,11 +129,11 @@ export class LocationService {
       });
 
       const radius = e.accuracy;
-      current_position = L.marker(e.latlng, { icon: naviIcon })
+      currentPosition = L.marker(e.latlng, { icon: naviIcon })
         .addTo(map)
         .bindPopup('<h4><b>Tutaj Jesteś</b></h4>')
         .openPopup();
-      current_accuracy = L.circle(e.latlng, radius).addTo(map);
+      currentAccuracy = L.circle(e.latlng, radius).addTo(map);
     }
   }
 }
