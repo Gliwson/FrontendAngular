@@ -1,8 +1,8 @@
 export enum PointDifference {
-  INVOICED,
-  DONE,
-  COMMENTS,
-  OFF,
-  OTHER,
-  ALL,
+  INVOICED = 'INVOICED',
+  DONE = 'DONE',
+  COMMENTS = 'COMMENTS',
+  OFF = 'OFF',
+  OTHER = 'OTHER',
+  ALL = 'ALL',
 }

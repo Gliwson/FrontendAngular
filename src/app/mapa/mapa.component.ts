@@ -3,6 +3,8 @@ import * as L from 'leaflet';
 import { LocationService } from './location/location.service';
 import { PositionsService } from './position/positions.service';
 import { PointDifference } from './position/modules/point-difficult.enum';
+import 'leaflet-easybutton';
+import 'leaflet-easybutton/src/easy-button.css';
 
 @Component({
   selector: 'app-mapa',
@@ -14,72 +16,35 @@ export class MapaComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const map = this.location.initMap();
+    const note = L.layerGroup();
+    const completedWorks = L.layerGroup();
+    const offWork = L.layerGroup();
+    const facture = L.layerGroup();
+    const rest = L.layerGroup();
+    const all = L.layerGroup();
+
     this.location.locationNavi(map);
 
-    this.position.getPoint(PointDifference.ALL).subscribe((value) => {
-      value.forEach((e) => {
-        const myCustomColour = e.colorsComments;
-        const myCustomColour2 = e.colorsName;
+    this.location.addPointToMap(PointDifference.ALL, all);
+    this.location.addPointToMap(PointDifference.COMMENTS, note);
+    this.location.addPointToMap(PointDifference.DONE, completedWorks);
+    this.location.addPointToMap(PointDifference.OFF, offWork);
+    this.location.addPointToMap(PointDifference.INVOICED, facture);
+    this.location.addPointToMap(PointDifference.OTHER, rest);
 
-        const markerHtmlStyles3 = `
-        background-color: ${myCustomColour};
-        width: 1rem;
-        height: 1rem;
-        display: block;
-        left: -1.5rem;
-        top: -1.5rem;
-        position: relative;
-        border-radius: 3rem 3rem 0;
-        transform: rotate(45deg);
-        border: 5px solid ${myCustomColour2}`;
+    const overlayMaps = {
+      UWAGI: note,
+      'WYKONANE PRACE NA ZIELONO': completedWorks,
+      'WYLACZENIA ZAKLADOWSKIE': offWork,
+      ZAFAKTUROWANE: facture,
+      RESZTA: rest,
+      WSZYSTKIE: all,
+    };
+    map.addLayer(note);
+    L.control.layers(overlayMaps).addTo(map);
 
-        const icon3 = L.divIcon({
-          className: 'my-custom-pin',
-          iconAnchor: [0, 15],
-          popupAnchor: [0, -15],
-          html: `<span style="${markerHtmlStyles3}" />`,
-        });
-        const urlow =
-          'https://docs.google.com/spreadsheets/d/1sxkhqRCVJ5bRDAxgIY3TjZJ9-_3OB-osAGDrsnRz8GE/' +
-          'edit#gid=0&range=A' +
-          e.id +
-          ':H' +
-          e.id;
-        new L.Marker([e.x, e.y], { icon: icon3 })
-          .addTo(map)
-          .bindPopup(
-            '<div id="content">' +
-              '<div id="siteNotice">' +
-              '</div>' +
-              '<h4 id="firstHeading" class="firstHeading">Pozycja w arkuszu: ' +
-              e.id +
-              '<br>' +
-              e.name +
-              '</h4>' +
-              '<div id="bodyContent">' +
-              '<p>Uwagi: ' +
-              e.comments +
-              '</p>' +
-              '<p>' +
-              '<a target="_blank" href="' +
-              e.locationHref +
-              '">Lokalizacja</a>' +
-              '</p>' +
-              '<p>' +
-              '<a target="_blank" href="' +
-              e.dyskHref +
-              '">Dysk</a>' +
-              '</p>' +
-              '<p>' +
-              '<a target="_blank" href="' +
-              urlow +
-              '">Lokalizacja do ARKUSZA</a>' +
-              '</p>' +
-              '</div>' +
-              '</div>'
-          )
-          .closePopup();
-      });
-    });
+    L.easyButton('<h3><span class="star">&curren;</span><h3/>', function Location() {
+      map.locate({ setView: true, maxZoom: 16 });
+    }).addTo(map);
   }
 }
