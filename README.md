@@ -1,6 +1,6 @@
 # Frontend w Angularze
 
-Ten projekt został wygenerowany za pomocą [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+Ten projekt został wygenerowany za pomocą [Angular CLI](https://github.com/angular/angular-cli) wersji 9.1.0.
 
 ## Serwer programistyczny
 
@@ -12,4 +12,4 @@ Aplikacja zostanie automatycznie ponownie załadowana, jeśli zmienisz dowolny p
 Uruchomić `ng build` budowanie projektu wersji deweloperskiej.
 Artefakty kompilacji będą przechowywane w `dist/`. Użyj `--prod` flaga kompilacji produkcyjnej.
 
-![Image description](images/image.png)
+![Mapa](images/image.png)
