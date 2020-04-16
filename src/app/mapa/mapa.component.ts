@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { LocationService } from './location/location.service';
 import { LayerGroupService } from './buttons/layer-group.service';
 import { ButtonService } from './buttons/button.service';

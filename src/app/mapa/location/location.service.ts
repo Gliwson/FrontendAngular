@@ -107,6 +107,7 @@ export class LocationService {
     function onLocationError(e) {
       alert(e.message);
     }
+
     function onLocationFound(e): void {
       if (currentPosition) {
         map.removeLayer(currentPosition);
