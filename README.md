@@ -17,3 +17,4 @@ Artefakty kompilacji będą przechowywane w `dist/`. Użyj `--prod` flaga kompil
 Do uruchomienia programu wymagane jest utworzenie zmiennych środowiskowych `config` oraz `configURLGoogleSheets`
 
 ![Mapa](images/image.png)
+![Mapa_2](images/image2.png)
