@@ -9,12 +9,12 @@ Aplikacja zostanie automatycznie ponownie załadowana, jeśli zmienisz dowolny p
 
 ## Budowanie
 
-Uruchomić `ng build` budowanie projektu wersji deweloperskiej.
+Uruchomić `ng build` budowanie projektu wersji deweloperskiej. \n
 Artefakty kompilacji będą przechowywane w `dist/`. Użyj `--prod` flaga kompilacji produkcyjnej.
 
 ## Pierwsze kroki
 
-Do uruchomienia programu wymagane jest utworzenie zmiennych środowiskowych `config` oraz `configURLGoogleSheets`
+Do uruchomienia programu wymagane jest utworzenie zmiennych środowiskowych `config` oraz `configURLGoogleSheets`.
 
 ![Mapa](images/image.png)
 ![Mapa_2](images/image2.png)
